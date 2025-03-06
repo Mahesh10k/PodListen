@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom"
-import "../LoginForm/Login.css"
+// import "../LoginForm/Login.css"
 import { useState } from 'react';
 import "./Signup.css"
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "firebase/auth";
@@ -144,10 +144,12 @@ const SignupForm = () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      console.log("Google sign up successful:", result.user);
+      console.log("Google sign up successful:", result.user.photoURL);
+      localStorage.setItem("userName",result.user.displayName)
+      localStorage.setItem("ProfilePic",result.user.photoURL)
       
       // Navigate to main page after successful Google signup
-      setToastMessage({ operation: "success", msg: "Account created successfully! Please login to continue." });
+      setToastMessage({ operation: "success", msg: "Account created successfully!." });
         setTimeout(() => {
           navigate('/dashboard');
         }, 3000);
@@ -166,6 +168,8 @@ const SignupForm = () => {
       
       // Navigate to main page after successful guest login
       setToastMessage({ operation: "success", msg: "Logged in as guest successfully." });
+      localStorage.setItem("userName","Guest")
+      localStorage.setItem("ProfilePic","https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=-mUWsTSENkugJ3qs5covpaj-bhYpxXY-v9RDpzsw504=")
         setTimeout(() => {
           navigate('/dashboard');
         }, 3000);

@@ -24,6 +24,10 @@
     background-color: var(--background-light);
     color: var(--text-primary);
     line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
   }
   
   /* Auth Form Container */

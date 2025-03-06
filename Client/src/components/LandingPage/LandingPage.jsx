@@ -111,7 +111,7 @@ const LandingPage = () => {
 
         {/* Categories */}
         <h2 style={headingStyling}  id="categories">Popular Podcast Categories</h2>
-        <Categories />
+        <Categories loggedin={false}/>
 
         {/* footer */}
         <Footer />

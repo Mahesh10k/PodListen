@@ -33,6 +33,7 @@ const MainContainer = styled.div`
   padding: 20px;
   color:${({ theme }) => theme.text_primary};
   text-align:center;
+  width:80vw
 `;
 const MainPage = () => {
     const [darkMode, setDarkMode] = useState(false);

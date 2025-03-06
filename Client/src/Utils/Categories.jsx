@@ -1,9 +1,10 @@
 import { Category } from "./Data.jsx"
 import "../App.css"
+import { useNavigate } from "react-router"
 
 const containerStyling={
   display:"flex",
-  justifyContent:"center",
+  justifyContent:"center", 
   alignItems:"center",
   flexWrap:"wrap"
   }
@@ -28,7 +29,9 @@ const h2Styling={
 }
 
 
-const Categories = () => {
+const Categories = ({loggedin}) => {
+  
+  let navigate=useNavigate()
   return (
     <div style={containerStyling}>
         {Category.map((value, index) => {
@@ -37,6 +40,7 @@ const Categories = () => {
               key={index}
               style={{backgroundColor: value.color}}
               className="category-card"
+              onClick={()=>{!loggedin ? navigate("/login") : `Welcome to ${value.name}`} }
             >
               <img
                 src={value.img}
