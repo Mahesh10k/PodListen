@@ -6,7 +6,7 @@ import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BackupRoundedIcon from '@mui/icons-material/BackupRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoImage from "../assets/Logo.png"
 import { Link } from "react-router-dom"
 import { useState } from 'react';
@@ -165,10 +165,9 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
       </MobileToggle>
       
       <MobileOverlay isOpen={isOpen} onClick={toggleMenu} />
-      
       <MenuContainer isOpen={isOpen}>
         <Flex>
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link to="" style={{ textDecoration: "none", color: "inherit" }}>
             <Logo>
               <Image src={LogoImage} />
             </Logo>
@@ -181,28 +180,28 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
         <Divider />
         
         <ScrollContainer>
-          <Link to='/' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
-            <Elements>
+          <Link to='' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+            <Elements>  
               <HomeRounded />
               <NavText>Dashboard</NavText>
             </Elements>
           </Link>
           
-          <Link to='/search' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+          <Link to='search' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
             <Elements>
               <SearchRoundedIcon />
               <NavText>Search</NavText>
             </Elements>
           </Link>
           
-          <Link to='/favourites' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+          <Link to='trending' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
             <Elements>
               <FavoriteRoundedIcon />
-              <NavText>Favourites</NavText>
+              <NavText>Trending</NavText>
             </Elements>
           </Link>
           
-          <Link to='/upload' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+          <Link to='upload' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
             <Elements>
               <BackupRoundedIcon />
               <NavText>Upload</NavText>
@@ -216,10 +215,13 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
             <NavText>{darkMode ? "Light Mode" : "Dark Mode"}</NavText>
           </Elements>
           
+
+          <Link to='profile' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
           <Elements>
-            <ExitToAppRoundedIcon />
-            <NavText>Log In</NavText>
+            <AccountCircleIcon />
+            <NavText>Profile</NavText>
           </Elements>
+          </Link>
         </ScrollContainer>
       </MenuContainer>
     </>

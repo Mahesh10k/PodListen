@@ -1,8 +1,10 @@
+import Logout from "./Logout.jsx"
 
 const Profile = () => {
   return (
     <div>
-      THIS IS YOUR PROFILE
+      <h3>This is My Profile</h3>
+      <Logout/>
     </div>
   )
 }

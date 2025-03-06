@@ -2,9 +2,12 @@
 const PodcastDetails = () => {
   return (
     <div>
-      these are podcast details
+      These are podcast details to be shown.
     </div>
   )
 }
 
 export default PodcastDetails
+
+
+ 

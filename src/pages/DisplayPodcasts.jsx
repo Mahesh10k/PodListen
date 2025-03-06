@@ -2,7 +2,7 @@
 const DisplayPodcasts = () => {
   return (
     <div>
-      Podcasts here
+      <h3>All the Podcasts here..</h3>
     </div>
   )
 }

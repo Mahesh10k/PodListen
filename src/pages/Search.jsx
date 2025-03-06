@@ -12,7 +12,7 @@ const inputStyling = {
 const buttonStyling = {
   padding: '10px 20px',
   fontSize: '16px',
-  backgroundColor: '#007bff',
+  backgroundColor: '#AA60C8',
   color: '#fff',
   border: 'none',
   borderRadius: '4px',
