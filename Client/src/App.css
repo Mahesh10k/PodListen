@@ -14,4 +14,29 @@
 .category-card:hover{
     transform: scale(1.05);
 }
- 
+
+@media (max-width: 768px){
+    *{
+        font-size: 80%;
+        width: 100;
+    }
+    #about,.podcastReasons {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    .listItemsStyling{
+        width: fit-content;
+    }
+    .layer2ListStyling{
+        width:100vw
+    }
+    .category-card {
+        width: 200px;
+    }
+    .category-card h3{
+        font-size: 0.5rem;
+    }
+
+    
+}

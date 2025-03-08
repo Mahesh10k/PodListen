@@ -1,26 +1,21 @@
-import Categories from "../Utils/Categories"
-import { useEffect, useState } from "react"
 
+import { useEffect, useState } from "react";
+import Categories from "../Utils/Categories";
 
-const styling={
-  textAlign:"center",
-  margin:"0.6rem auto"
-}
 const Dashboard = () => {
-  const [data,setData]=useState("")
-  useEffect(()=>{
-    fetch("http://localhost:5173/dashboard")
-    .then(res=>res.json())
-    .then(data=>setData(data))
-  },[])
-  // console.log(data)
-  return (
-    <div >
-      <h3 style={styling}>Choose Your Category..</h3>
-      <p>{data ? data :"Loading"}</p>
-      <Categories loggedin={true}/>
-    </div>
-  )
-}
+  const [data,setData]=useState(null)
+  
+  fetch("http://localhost:4040/dashboard/")
+  .then(res=>res.json())
+  .then(data=>setData(data.data))
 
-export default Dashboard
+  return (
+    <div>
+      <h3>Choose Your Category..</h3>
+      <p>{data}</p>
+      <Categories/>
+    </div>
+  );
+};
+
+export default Dashboard;

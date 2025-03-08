@@ -6,7 +6,7 @@ const divStylings={
     flexDirection:"column",
     justifyContent:"center",
     textAlign:"center",
-    height:"50vh",
+    height:"30vh",
     alignItems:"center",
     gap:"1rem"
 }

@@ -1,0 +1,58 @@
+/* General Styles */
+*{
+    text-align: center;
+    color: rgb(85, 43, 124);
+}
+.home >img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  #about, .podcastReasons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+  }
+  #about>img, .podcastReasons>img{
+    width: 25%;
+  } 
+  #about  div{
+    width: 40%;
+  }
+  .podcastReasons .listItems{
+    text-decoration: none;
+    list-style-type: none;
+    text-align: start;
+  }
+  #categories{
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 768px){
+    *{
+        font-size: 80%;
+    }
+    #about>img, .podcastReasons>img{
+        width: 60%;
+      } 
+      #about, .podcastReasons{
+        gap: 1rem;
+      }
+      #about>img, .podcastReasons>img{
+        order: 1;
+      }
+      p, li{
+        font-size: 1rem;
+      }
+      #about div{
+        width: 80%;
+      }
+
+    
+  }
+
+  
