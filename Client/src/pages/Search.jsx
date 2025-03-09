@@ -40,7 +40,7 @@ const Search = () => {
   const handleChange=(e)=>{
     setInputData(e.target.value)
   }
-
+  
   const handleSubmit=(e)=>{
       e.preventDefault()
       console.log(inputData)

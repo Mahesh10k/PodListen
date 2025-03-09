@@ -6,7 +6,7 @@ const uploadModel = require('../models/uploadModel.js');
 // Set up Multer storage options
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './Podcasts');  // Store the files in the "Podcasts" folder
+    cb(null, '../Podcasts'); 
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + file.originalname); // File naming with timestamp

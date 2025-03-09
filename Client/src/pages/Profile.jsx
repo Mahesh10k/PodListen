@@ -12,9 +12,9 @@ const profileStylings={
     display:"flex",
     flexDirection:"column",
     gap:"1.5rem",
-    Padding:"1rem",
-    width:"20vw",
-    height:"30vh",
+    Padding:"4rem",
+    // width:"20vw",
+    // height:"30vh",
     boxShadow:"2px 2px 3px gray", 
     margin:" 3rem auto"
 } 

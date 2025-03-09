@@ -23,6 +23,7 @@ const Upload = () => {
     display: "flex",
     flexDirection: "column",
     gap: "15px", // Increased gap for spacing
+    fontSize:"1rem"
   };
 
   const loaderStyling = {
@@ -40,7 +41,7 @@ const Upload = () => {
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
-    }
+    } 
   `;
 
   // Handle form submission
@@ -48,7 +49,9 @@ const Upload = () => {
     e.preventDefault();
 
     if (!filename || !category || !description || !podcaster) {
-      return alert("Please fill in all fields.");
+      setToastMessage({ operation: "warn", msg: "Fill all Data!" });
+      console.log("okk")
+      return
     }
 
     setIsLoading(true);
@@ -61,11 +64,9 @@ const Upload = () => {
     formData.append("podcaster", podcaster);
 
     // Make the POST request to the backend
+    
     fetch("http://localhost:4040/dashboard/upload", {
       method: "POST",
-      headers: {
-        "Accept": "application/json", // Expecting JSON response from server
-      },
       body: formData, 
     })
       .then((response) => response.json()) 
@@ -78,7 +79,7 @@ const Upload = () => {
         setIsLoading(false);
         setToastMessage({ operation: "error", msg: "Error uploading file." })  
         console.log(error);
-      });
+      }); 
   }
 
   // Handle file input change

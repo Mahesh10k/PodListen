@@ -17,9 +17,10 @@ const buttonDivStyling={
 const buttonStyling={
     borderRadius:"10px",
     padding:"5px 10px",
-    backgroundColor:"#AA60C8"
+    backgroundColor:"#AA60C8",
+    fontSize:"1rem"
 }
-const Profile=()=>{
+const Logout=()=>{
     const [toastMessage, setToastMessage] = useState(null);
     let navigate=useNavigate()
     const handleLogout=()=>{
@@ -39,4 +40,4 @@ const Profile=()=>{
         </div>
     )
 }
-export default Profile
+export default Logout
