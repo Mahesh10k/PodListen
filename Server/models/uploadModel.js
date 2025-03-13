@@ -1,32 +1,11 @@
+const mongoose = require("mongoose");
 
+const PodcastSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  category: { type: String, required: true },
+  audioUrl: { type: String, required: true },
+  thumbnailUrl:{ type: String, required: true },
+  createdAt: { type: Date, default: Date.now }
+});
 
-const fs = require('fs');
-const path = require('path');
-
-module.exports = {
-  saveFileData: (file) => {
-    if (!file) {
-      console.error("No file provided to saveFileData");
-      return;
-    }
-
-    const fileData = {
-      originalname: file.originalname,
-      filename: file.filename,
-      size: file.size,
-      path: file.path, // Use multer-generated path
-    };
-
-    console.log('File uploaded:', fileData);
-
-    // Ensure log file exists before appending
-    const logFile = 'upload-log.json';
-    if (!fs.existsSync(logFile)) {
-      fs.writeFileSync(logFile, ''); 
-    }
-
-    // Append file info to log
-    fs.appendFileSync(logFile, JSON.stringify(fileData) + '\n', 'utf8');
-  }
-};
-
+module.exports = mongoose.model("Podcast", PodcastSchema);

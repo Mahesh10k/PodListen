@@ -102,8 +102,8 @@ const LoginForm = () => {
         <h1>Welcome Back</h1>
         <p>Login to continue your podcast journey</p>
       </div>
-      {toastMessage && <SuccessModal operation={toastMessage.operation} msg={toastMessage.msg} />}
       {authError && <div className="auth-error-message">{authError}</div>}  
+      {toastMessage?.msg && <SuccessModal operation={toastMessage.operation} msg={toastMessage.msg} />}
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
           <label htmlFor="email">Email Address</label>

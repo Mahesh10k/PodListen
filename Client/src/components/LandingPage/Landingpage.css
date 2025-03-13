@@ -1,5 +1,5 @@
 /* General Styles */
-*{
+.home{
     text-align: center;
     color: rgb(85, 43, 124);
 }
@@ -16,6 +16,7 @@
     gap: 3rem;
     font-size: 1.3rem;
     margin-top: 1rem;
+    /* color: rgb(85, 43, 124); */
   }
   #about>img, .podcastReasons>img{
     width: 25%;

@@ -1,25 +1,42 @@
 let express=require("express")
-let cors=require("cors")
 let router=express.Router()
-let uploadController=require("../controllers/uploadController.js")
+let uploadPodcast=require("../controllers/uploadController.js")
+let getPodcasts=require("../controllers/dashboardController")
+let upload=require("../Middlewares/Multer")
+let getPodcastById=require("../controllers/podcastByIdController")
+let PodcastByCategory=require("../controllers/categorisedController")
+const getPodcastByTitle = require("../controllers/searchController")
+const trendingPodcasts=require("../controllers/trendingPodControllers")
 
-router.get("/",(req,res)=>{
-    res.send({data:"Dashboard data fetched"})
-})
+// Route for get all Podcasts data
+router.get("/",getPodcasts)
+
+// Route to Search Podcast by Category
+router.get("/search/category/:category",PodcastByCategory)
+
+// Route for Trending Podcasts
+router.get("/trending",trendingPodcasts)
+
+//Router to get Podcast by Title
+router.get("/title/:title",getPodcastByTitle)
+
+// Router to get Podcast by Id
+router.get("/podcast/:id",getPodcastById)
+ 
+// Route to Insert Data
+router.post("/upload", upload.fields([
+    { name: "file", maxCount: 1 }, // Audio file
+    { name: "thumbnail", maxCount: 1 } // Thumbnail image
+  ]),
+  uploadPodcast
+);
 
 
-router.get("/search",(req,res)=>{
-    res.send({
-        data:"searched Data Found"
-    })
-})
 
-router.get("/trending",(req,res)=>{
-    res.send({
-        data:"these are Trending Podcasts come from Backend"
-    })
-})
 
-router.post("/upload", uploadController.uploadFile)
+
+
+  
+
 
 module.exports=router

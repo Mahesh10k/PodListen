@@ -40,7 +40,7 @@ const Categories = ({loggedin}) => {
               key={index}
               style={{backgroundColor: value.color}}
               className="category-card"
-              onClick={()=>{!loggedin ? navigate("/login") : `Welcome to ${value.name}`} }
+              onClick={()=>{!loggedin ? navigate("/login") : navigate(`/dashboard/category/${value.name.toLowerCase()}`)} }
             >
               <img
                 src={value.img}

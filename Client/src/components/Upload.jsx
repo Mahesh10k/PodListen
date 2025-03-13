@@ -3,9 +3,9 @@ import SuccessModal from "../Utils/SuccessModal";
 
 const Upload = () => {
   const [filename, setFilename] = useState(null);
+  const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [podcaster, setPodcaster] = useState("");
+  const [thumbnail, setThumbnail]=useState("")
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   
@@ -47,40 +47,41 @@ const Upload = () => {
   // Handle form submission
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (!filename || !category || !description || !podcaster) {
+  
+    if (!filename || !category || !title || !thumbnail) {
       setToastMessage({ operation: "warn", msg: "Fill all Data!" });
-      console.log("okk")
-      return
+      return;
     }
-
+  
     setIsLoading(true);
-
-    // Create FormData object to send the file and form data
+  
     const formData = new FormData();
     formData.append("file", filename);
+    formData.append("thumbnail", thumbnail);
     formData.append("category", category);
-    formData.append("description", description);
-    formData.append("podcaster", podcaster);
-
-    // Make the POST request to the backend
-    
+    formData.append("title", title);
+  
     fetch("http://localhost:4040/dashboard/upload", {
       method: "POST",
-      body: formData, 
+      body: formData
     })
-      .then((response) => response.json()) 
+      .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);
         setToastMessage({ operation: "success", msg: "File uploaded successfully!" });
         console.log(data);
+        setFilename("");
+        setTitle("");
+        setCategory("");
+        setThumbnail("");
       })
       .catch((error) => {
         setIsLoading(false);
-        setToastMessage({ operation: "error", msg: "Error uploading file." })  
+        setToastMessage({ operation: "error", msg: "Error uploading file." });
         console.log(error);
-      }); 
+      });
   }
+  
 
   // Handle file input change
   function handleFileChange(e) {
@@ -117,6 +118,42 @@ const Upload = () => {
           required
         />
 
+          {/* Thumbnail */}
+        <label htmlFor="file" style={{ fontWeight: "bold", color: "#555" }}>
+          Upload Thumbnail Image
+        </label>
+        <input
+          type="file"
+          name="thumbnail"
+          id="thumbnail"
+          accept="image/*"
+          // value={thumbnail}
+          onChange={e=>{setThumbnail(e.target.files[0])}}
+          style={{
+            padding: "8px",
+            border: "1px solid #ddd",
+            borderRadius: "4px",
+          }}
+          required
+        />
+
+        {/* title input */}
+        <label htmlFor="title" style={{ fontWeight: "bold", color: "#555" }}>
+          Title
+        </label>
+        <input
+          id="title"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)} 
+          style={{
+            padding: "8px",
+            border: "1px solid #ddd",
+            borderRadius: "4px"
+          }}
+          required
+        ></input>
+
         {/* Category input */}
         <label htmlFor="category" style={{ fontWeight: "bold", color: "#555" }}>
           Category
@@ -148,41 +185,8 @@ const Upload = () => {
         <option value="crime">Crime</option>
       </select>
 
-        {/* Description input */}
-        <label htmlFor="description" style={{ fontWeight: "bold", color: "#555" }}>
-          Description
-        </label>
-        <textarea
-          id="description"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          style={{
-            padding: "8px",
-            border: "1px solid #ddd",
-            borderRadius: "4px",
-            minHeight: "80px",
-          }}
-          required
-        ></textarea>
 
-        {/* Podcaster input */}
-        <label htmlFor="podcaster" style={{ fontWeight: "bold", color: "#555" }}>
-          Podcaster Name
-        </label>
-        <input
-          type="text"
-          id="podcaster"
-          name="podcaster"
-          value={podcaster}
-          onChange={(e) => setPodcaster(e.target.value)}
-          style={{
-            padding: "8px",
-            border: "1px solid #ddd",
-            borderRadius: "4px",
-          }}
-          required
-        />
+        
 
         { isLoading ? (
           <div style={loaderStyling}></div>
@@ -197,7 +201,7 @@ const Upload = () => {
               borderRadius: "4px",
               cursor: "pointer",
             }}
-            disabled={!filename || !category || !description || !podcaster}
+            disabled={!filename || !category || !title || !thumbnail}
           >
             Submit
           </button>

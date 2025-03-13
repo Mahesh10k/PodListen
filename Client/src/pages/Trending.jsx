@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
-import "./dashboard.css";
-import { useNavigate, useParams } from "react-router-dom";
-import MyLoader from "../Utils/SkeletonLoader"
+import { useEffect, useState } from "react"
+import "./dashboard.css"
+import { useNavigate } from "react-router"
 
-// import Categories from "../Utils/Categories";
+const Trending = () => {
+  const [data,setData]=useState(null)
 
-const Dashboard = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:4040/dashboard/")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
-  // console.log(data)
- 
-  let navigate = useNavigate();
-  const openPodcast = (id) => {
-    navigate(`podcast/${id}`);
-  };
-
+  useEffect(()=>{
+    fetch("http://localhost:4040/dashboard/trending")
+    .then(res=>res.json())
+    .then(data=>setData(data))
+  },[])
+  console.log(data)
+  
+  let navigate=useNavigate()
+  const openPodcast=(id)=>{
+    navigate(`../podcast/${id}`)
+  }
+  
   return (
-    <div className="dashboard">
-      <h3>Listen Your Favorite Podcast ..</h3>
-      <div className="podcast-container">
+    <div>
+      <h2>Trending Podcasts</h2>
+      {
+        data && (
+          <div className="podcast-container">
         {data === null ? (
           <MyLoader/>
         ) : (
@@ -50,9 +48,10 @@ const Dashboard = () => {
           ))
         )}
       </div>
-      {/* <Categories/> */}
+        )
+      }
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Trending

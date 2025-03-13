@@ -1,43 +1,24 @@
-// controllers/uploadController.js
-const multer = require('multer');
-const path = require('path');
-const uploadModel = require('../models/uploadModel.js'); 
+const Podcast = require("../models/uploadModel");
 
-// Set up Multer storage options
-let storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, '../Podcasts'); 
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname); // File naming with timestamp
-  },
-});
+const uploadPodcast = async (req, res) => {
+  try {
+    const { title, category } = req.body;
 
-let upload = multer({ storage: storage });
+    // Get URLs from Cloudinary (Multer automatically provides 'path')
+    const audioUrl = req.files["file"] ? req.files["file"][0].path : null;
+    const thumbnailUrl = req.files["thumbnail"] ? req.files["thumbnail"][0].path : null;
 
-// File upload controller
-exports.uploadFile = (req, res) => {
-
-  // Handle file upload request
-  upload.single('file')(req, res, (err) => {
-    if (err) {
-      return res.status(500).send({ 
-        message: "Error uploading file",
-        error: err });
+    if (!audioUrl || !thumbnailUrl) {
+      return res.status(400).json({ error: "Both audio and thumbnail are required!" });
     }
 
-    if (!req.file) {
-      return res.status(400).send({ 
-        message: "No file uploaded" 
-        });
-    }
+    const podcast = new Podcast({ title, category, audioUrl, thumbnailUrl });
+    await podcast.save();
 
-    // Optionally save file data to a database using the model
-    uploadModel.saveFileData(req.file);
-
-    return res.send({
-      message: `${req.file.originalname} uploaded successfully`,
-      file: req.file
-    });
-  });
+    res.status(201).json({ message: "Podcast uploaded successfully", podcast });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
+
+module.exports = uploadPodcast;
