@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router-dom"
 // import "../LoginForm/Login.css"
 import { useState } from 'react';
 import "./Signup.css"
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../Firebase/firebase.js"
 import SuccessModal from "../../Utils/SuccessModal.jsx";
 
