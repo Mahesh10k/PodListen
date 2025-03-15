@@ -38,9 +38,9 @@ const Dashboard = () => {
                 className="audio-details"
                 style={{ backgroundImage: `url(${value.thumbnailUrl})` }}
               >
-                <audio controls>
+                {/* <audio controls>
                   <source type="audio/mp3" src={value.audioUrl} />
-                </audio>
+                </audio> */}
               </div>
               <div className="podcast-details">
                 <h5>{value.title}</h5>
