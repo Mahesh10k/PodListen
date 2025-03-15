@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "./dashboard.css";
+import "./index.css";
 import { useNavigate, useParams } from "react-router-dom";
-import MyLoader from "../Utils/SkeletonLoader"
+import MyLoader from "../Utils/SkeletonLoader";
 
 // import Categories from "../Utils/Categories";
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
   }, []);
 
   // console.log(data)
- 
+
   let navigate = useNavigate();
   const openPodcast = (id) => {
     navigate(`podcast/${id}`);
@@ -26,7 +26,7 @@ const Dashboard = () => {
       <h3>Listen Your Favorite Podcast ..</h3>
       <div className="podcast-container">
         {data === null ? (
-          <MyLoader/>
+          <MyLoader />
         ) : (
           data.map((value) => (
             <div
