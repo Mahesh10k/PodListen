@@ -101,7 +101,7 @@ const LoginForm = () => {
       try {
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
-        console.log("Google sign up successful:", result.user.photoURL);
+        console.log("Google sign in successful:", result.user.photoURL);
         localStorage.setItem("userName",result.user.displayName)
         localStorage.setItem("ProfilePic",result.user.photoURL)
         
