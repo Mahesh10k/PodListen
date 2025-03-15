@@ -139,46 +139,46 @@ const SignupForm = () => {
     }
   };
   
-  const handleGoogleSignup = async () => {
-    setAuthError('');
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      console.log("Google sign up successful:", result.user.photoURL);
-      localStorage.setItem("userName",result.user.displayName)
-      localStorage.setItem("ProfilePic",result.user.photoURL)
+  // const handleGoogleSignup = async () => {
+  //   setAuthError('');
+  //   try {
+  //     const provider = new GoogleAuthProvider();
+  //     const result = await signInWithPopup(auth, provider);
+  //     console.log("Google sign up successful:", result.user.photoURL);
+  //     localStorage.setItem("userName",result.user.displayName)
+  //     localStorage.setItem("ProfilePic",result.user.photoURL)
       
-      // Navigate to main page after successful Google signup
-      setToastMessage({ operation: "success", msg: "Account created successfully!." });
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 3000);
-    } catch (error) {
-      console.error("Google signup error:", error);
-      setAuthError("Google sign up failed. Please try again.");
-      setToastMessage({ operation: "error", msg: "Google sign up failed. Please try again." });
-    }
-  };
+  //     // Navigate to main page after successful Google signup
+  //     setToastMessage({ operation: "success", msg: "Account created successfully!." });
+  //       setTimeout(() => {
+  //         navigate('/dashboard');
+  //       }, 3000);
+  //   } catch (error) {
+  //     console.error("Google signup error:", error);
+  //     setAuthError("Google sign up failed. Please try again.");
+  //     setToastMessage({ operation: "error", msg: "Google sign up failed. Please try again." });
+  //   }
+  // };
   
-  const handleGuestAccess = async () => {
-    setAuthError('');
-    try {
-      const result = await signInAnonymously(auth);
-      console.log("Guest access granted:", result.user);
+  // const handleGuestAccess = async () => {
+  //   setAuthError('');
+  //   try {
+  //     const result = await signInAnonymously(auth);
+  //     console.log("Guest access granted:", result.user);
       
-      // Navigate to main page after successful guest login
-      setToastMessage({ operation: "success", msg: "Logged in as guest successfully." });
-      localStorage.setItem("userName","Guest")
-      localStorage.setItem("ProfilePic","https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=-mUWsTSENkugJ3qs5covpaj-bhYpxXY-v9RDpzsw504=")
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 3000);
-    } catch (error) {
-      console.error("Guest access error:", error);
-      setAuthError("Guest access failed. Please try again.");
-      setToastMessage({ operation: "error", msg: "Guest access failed. Please try again." });
-    }
-  };
+  //     // Navigate to main page after successful guest login
+  //     setToastMessage({ operation: "success", msg: "Logged in as guest successfully." });
+  //     localStorage.setItem("userName","Guest")
+  //     localStorage.setItem("ProfilePic","https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=-mUWsTSENkugJ3qs5covpaj-bhYpxXY-v9RDpzsw504=")
+  //       setTimeout(() => {
+  //         navigate('/dashboard');
+  //       }, 3000);
+  //   } catch (error) {
+  //     console.error("Guest access error:", error);
+  //     setAuthError("Guest access failed. Please try again.");
+  //     setToastMessage({ operation: "error", msg: "Guest access failed. Please try again." });
+  //   }
+  // };
 
   return (
     <div className="auth-form-container">
@@ -265,7 +265,7 @@ const SignupForm = () => {
         <span>OR</span>
       </div>
       
-      <div className="social-login-options">
+      {/* <div className="social-login-options">
         <button 
           className="social-button google-button" 
           onClick={handleGoogleSignup}
@@ -282,7 +282,7 @@ const SignupForm = () => {
         >
           Continue as Guest
         </button>
-      </div>
+      </div> */}
       
       <div className="auth-switch">
         <p>
