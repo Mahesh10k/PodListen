@@ -51,7 +51,7 @@ const Search = () => {
   };
 
     useEffect(()=>{
-      fetch(`http://localhost:4040/dashboard/title/${inputData}`)
+      fetch(`https://podlisten.onrender.com/dashboard/title/${inputData}`)
       .then(res=>res.json())
       .then(data=>setData(data))
       console.log(data)

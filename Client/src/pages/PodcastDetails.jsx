@@ -8,7 +8,7 @@ const PodcastDetails = () => {
 
 
   useEffect(()=>{
-      fetch(`http://localhost:4040/dashboard/podcast/${id}`)
+      fetch(`https://podlisten.onrender.com/dashboard/podcast/${id}`)
       .then(res=>res.json())
       .then(data=>setPodcast(data))
   },[])

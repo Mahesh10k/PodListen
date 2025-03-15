@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:4040/dashboard/")
+    fetch("https://podlisten.onrender.com/dashboard/")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);

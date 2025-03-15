@@ -6,7 +6,7 @@ const Trending = () => {
   const [data,setData]=useState(null)
 
   useEffect(()=>{
-    fetch("http://localhost:4040/dashboard/trending")
+    fetch("https://podlisten.onrender.com/dashboard/trending")
     .then(res=>res.json())
     .then(data=>setData(data))
   },[])

@@ -9,7 +9,7 @@ const DisplayPodcasts = () => {
   const {category}=useParams()
 
   useEffect(()=>{
-    fetch(`http://localhost:4040/dashboard/search/category/${category}`) 
+    fetch(`https://podlisten.onrender.com/dashboard/search/category/${category}`) 
       .then(res=>res.json())
       .then(data=>setData(data))
   },[])
