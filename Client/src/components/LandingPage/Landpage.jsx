@@ -2,7 +2,7 @@ import HomeBanner from "../../assets/podcast_Banner.jpg";
 import guyWithhandonHead from "../../assets/guy-with-chaos-head-01.png";
 import Categories from "../../Utils/Categories.jsx";
 import greenTickImage from "../../assets/checked.png";
-import "./LandingPage.css";
+import "./index.css.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ListeningImage from "../../assets/listening.png";
 import Navbar from "../Navbar.jsx";
