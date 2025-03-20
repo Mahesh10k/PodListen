@@ -1,11 +1,19 @@
+import { Height } from "@mui/icons-material";
 import React from "react";
+
+
+let divStyling={
+    height:"100vh",
+    textAlign:"center",
+    alignItems:"center"
+}
 
 const Unauthorized = () => {
   return (
-    <div>
-      <h1>Unauthorized</h1>
+    <div style={divStyling}>
+      <h1 >Unauthorized</h1>
       <p>You are not authorized to access this page.</p>
-    </div>
+    </div>  
   );
 };
 

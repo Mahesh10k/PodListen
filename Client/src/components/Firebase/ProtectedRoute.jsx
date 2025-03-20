@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (user.email !== "maheshpikki03@gmail.com") {
-    return <Navigate to="/unauthorized" />;
+    return <Navigate to="/dashboard/unauthorized" />;
   }
 
   return children; // If logged in and the email matches, show the children (Upload page)
