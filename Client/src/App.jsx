@@ -11,6 +11,7 @@ import DisplayPodcasts from "./pages/DisplayPodcasts.jsx";
 import SignupForm from "./components/SignUpForm/Signup.jsx";
 import LoginForm from "./components/LoginForm/Login.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import Unauthorized from "./pages/UnauthorizedPage.jsx";
 
 function App() {
   return (
@@ -24,12 +25,13 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="trending" element={<Trending />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="upload" element={<Upload />} />
+          <Route path="upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
           <Route path="podcast/:id" element={<PodcastDetails />} />
           <Route path="category/:category" element={<DisplayPodcasts />} />
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />}></Route>
         </Route>
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </>
