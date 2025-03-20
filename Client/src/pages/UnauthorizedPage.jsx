@@ -5,7 +5,7 @@ import React from "react";
 let divStyling={
     height:"100vh",
     textAlign:"center",
-    alignItems:"center"
+    alignContent:"center"
 }
 
 const Unauthorized = () => {
