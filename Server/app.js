@@ -10,7 +10,7 @@ connectDB()
 app.use(express.json())
 
 
-var whitelist = ['https://pod-listen.vercel.app', 'https://localhost:5173']
+var whitelist = ['https://pod-listen.vercel.app/', 'https://localhost:5173/']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -23,7 +23,6 @@ var corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.urlencoded({extended:true}))
 
-// console.log("uri",user)
 
 
 
