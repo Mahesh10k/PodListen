@@ -2,6 +2,7 @@ const Podcast = require("../models/uploadModel");
 
 
 const getPodcastByCategory = async (req, res) => {
+
   try {
     const podcast = await Podcast.find({category:req.params.category});    
     if (!podcast) {

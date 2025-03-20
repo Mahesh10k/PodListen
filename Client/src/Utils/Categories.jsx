@@ -2,6 +2,8 @@ import { Category } from "./Data.jsx"
 import "../App.css"
 import { useNavigate } from "react-router"
 
+
+
 const containerStyling={
   display:"flex",
   justifyContent:"center", 
