@@ -3,7 +3,7 @@ import React from "react";
 
 
 let divStyling={
-    height:"100vh",
+    height:"90vh",
     textAlign:"center",
     alignContent:"center"
 }
