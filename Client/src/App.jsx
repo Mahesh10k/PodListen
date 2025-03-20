@@ -12,6 +12,7 @@ import SignupForm from "./components/SignUpForm/Signup.jsx";
 import LoginForm from "./components/LoginForm/Login.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Unauthorized from "./pages/UnauthorizedPage.jsx";
+import ProtectedRoute from "./components/Firebase/ProtectedRoute.jsx";
 
 function App() {
   return (
