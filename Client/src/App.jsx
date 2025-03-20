@@ -30,9 +30,9 @@ function App() {
           <Route path="podcast/:id" element={<PodcastDetails />} />
           <Route path="category/:category" element={<DisplayPodcasts />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
           <Route path="*" element={<ErrorPage />}></Route>
         </Route>
-        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </>
