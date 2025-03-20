@@ -35,7 +35,6 @@ const headingStyling = {
 const Search = () => {
   const [data, setData] = useState(null);
   const [inputData, setInputData] = useState("");
-  const [searchedData,setSearchedData]=useState([])
 
   const handleChange = (e) => {
     setInputData(e.target.value);
@@ -51,22 +50,11 @@ const Search = () => {
   };
 
   useEffect(() => {
-    fetch(`https://podlisten.onrender.com/dashboard/`)
+    fetch(`https://podlisten.onrender.com/dashboard/title/${inputData}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error("Error fetching data:", err));
-  }, [data]);
-
-  useEffect(() => {
-    if (inputData.trim() === "") {
-      setSearchedData([]);
-    } else {
-      const searched = data.filter((value) =>
-        value.title.toLowerCase().includes(inputData.toLowerCase().trim())
-      );
-      setSearchedData(searched);
-    }
-  }, [inputData, data]);
+      .then((data) => setData(data));
+    console.log(data);
+  }, [inputData]);
 
   return (
     <div>
@@ -83,12 +71,12 @@ const Search = () => {
         </button>
       </form>
       <h2 style={headingStyling}>Browse All</h2>
-      {searchedData && (
+      {data && (
         <div className="podcast-container">
-          {searchedData.length === 0 ? (
+          {data === null ? (
             <MyLoader />
           ) : (
-            searchedData.map((value) => (
+            data.map((value) => (
               <div
                 key={value._id}
                 className="podcast-card"
