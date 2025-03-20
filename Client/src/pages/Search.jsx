@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Categories from "../Utils/Categories";
 import MyLoader from "../Utils/SkeletonLoader";
 import { useNavigate } from "react-router";
@@ -26,15 +26,27 @@ const buttonStyling = {
 const formStyling = {
   textAlign: "center",
   display: "block",
-  margin: " 1rem 7rem",
+  margin: "1rem 7rem",
 };
+
 const headingStyling = {
   textAlign: "start",
   margin: "2rem 7rem",
 };
+
 const Search = () => {
-  const [data, setData] = useState(null);
+  const [allPodcasts, setAllPodcasts] = useState([]);
+  const [filteredPodcasts, setFilteredPodcasts] = useState([]);
   const [inputData, setInputData] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const debounceTimeout = useRef(null);
+
+  const navigate = useNavigate();
+
+  const openPodcast = useCallback((id) => {
+    navigate(`../podcast/${id}`);
+  }, [navigate]);
 
   const handleChange = (e) => {
     setInputData(e.target.value);
@@ -42,63 +54,90 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  let navigate = useNavigate();
-  const openPodcast = (id) => {
-    navigate(`../podcast/${id}`);
+    // Optionally handle form submission logic here.
   };
 
   useEffect(() => {
-    fetch(`https://podlisten.onrender.com/dashboard/title/${inputData}`)
+    // Fetch all podcasts on component mount
+    fetch("https://podlisten.onrender.com/dashboard")
       .then((res) => res.json())
-      .then((data) => setData(data));
-    console.log(data);
-  }, [inputData]);
+      .then((data) => {
+        setAllPodcasts(data);
+        setFilteredPodcasts(data); // Initially show all podcasts
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Failed to fetch podcasts.");
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+
+    debounceTimeout.current = setTimeout(() => {
+      if (inputData.trim()) {
+        // Filter podcasts based on the input
+        const filtered = allPodcasts.filter((podcast) =>
+          podcast.title.toLowerCase().includes(inputData.toLowerCase())
+        );
+        setFilteredPodcasts(filtered);
+      } else {
+        setFilteredPodcasts([]); // Empty filtered list
+      }
+    }, 500); // Debouncing the input
+
+    // Cleanup timeout on component unmount
+    return () => {
+      if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    };
+  }, [inputData, allPodcasts]);
 
   return (
     <div>
-      <form action="" style={formStyling} onSubmit={handleSubmit}>
+      <form style={formStyling} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Search Podcast by Title .."
-          name="category"
           style={inputStyling}
           onChange={handleChange}
+          value={inputData}
         />
         <button type="submit" style={buttonStyling}>
           Search
         </button>
       </form>
+
       <h2 style={headingStyling}>Browse All</h2>
-      {data && (
+
+      {loading && <MyLoader />}
+      {error && <p>{error}</p>}
+
+      {!loading && filteredPodcasts.length === 0 && inputData.trim() !== "" && (
+        <p>No results found</p> // Show this message when no results are found and input is not empty
+      )}
+
+      {!loading && filteredPodcasts.length > 0 && (
         <div className="podcast-container">
-          {data === null ? (
-            <MyLoader />
-          ) : (
-            data.map((value) => (
+          {filteredPodcasts.map((value) => (
+            <div
+              key={value._id}
+              className="podcast-card"
+              onClick={() => openPodcast(value._id)}
+            >
               <div
-                key={value._id}
-                className="podcast-card"
-                onClick={() => openPodcast(value._id)}
-              >
-                <div
-                  className="audio-details"
-                  style={{ backgroundImage: `url(${value.thumbnailUrl})` }}
-                >
-                  {/* <audio controls>
-                  <source type="audio/mp3" src={value.audioUrl} />
-                </audio> */}
-                </div>
-                <div className="podcast-details">
-                  <h5>{value.title}</h5>
-                  <p>{value.createdAt.split("T")[0]}</p>
-                </div>
+                className="audio-details"
+                style={{ backgroundImage: `url(${value.thumbnailUrl})` }}
+              ></div>
+              <div className="podcast-details">
+                <h5>{value.title}</h5>
+                <p>{value.createdAt.split("T")[0]}</p>
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
       )}
+
       <Categories loggedin={true} />
     </div>
   );
