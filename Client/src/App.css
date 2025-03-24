@@ -37,6 +37,9 @@
     .category-card h3{
         font-size: 0.5rem;
     }
-
+    /* success  modal  */
+    .success-modal-message {
+        font-size: 14px;
+      }
     
 }
