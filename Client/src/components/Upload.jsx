@@ -70,7 +70,7 @@ const Upload = () => {
         setIsLoading(false);
         setToastMessage({ operation: "success", msg: "File uploaded successfully!" });
         console.log(data);
-        setFilename("");
+        setFilename(null);
         setTitle("");
         setCategory("");
         setThumbnail("");
